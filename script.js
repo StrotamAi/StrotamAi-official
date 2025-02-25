@@ -1,16 +1,29 @@
 
-// script.js - Simple JavaScript animations
+// script.js - Interactive 3D Logo and Scroll Effects
 document.addEventListener("DOMContentLoaded", () => {
+    const logo = document.querySelector(".logo");
     const cube = document.querySelector(".cube");
-    let rotationX = 0;
-    let rotationY = 0;
+    const elements = document.querySelectorAll(".fade-in");
 
-    const rotateCube = () => {
-        rotationX += 1;
-        rotationY += 1;
+    // Scroll-triggered animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+            }
+        });
+    }, { threshold: 0.5 });
+
+    elements.forEach(el => observer.observe(el));
+
+    // Interactive 3D logo rotation
+    cube.addEventListener("mousemove", (e) => {
+        const rotationX = (e.clientY / window.innerHeight - 0.5) * 360;
+        const rotationY = (e.clientX / window.innerWidth - 0.5) * 360;
         cube.style.transform = `rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
-        requestAnimationFrame(rotateCube);
-    };
+    });
 
-    rotateCube();
+    cube.addEventListener("mouseleave", () => {
+        cube.style.transform = "rotateX(0deg) rotateY(0deg)";
+    });
 });
