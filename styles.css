@@ -1,0 +1,68 @@
+
+/* styles.css - Professional Design with 3D Cube */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #1a1a1a, #333);
+    color: white;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    text-align: center;
+    padding: 50px;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+}
+
+/* Cube styles */
+.cube-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    perspective: 800px;
+}
+
+.cube {
+    width: 150px;
+    height: 150px;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: rotateCube 10s infinite linear;
+}
+
+.face {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background: rgba(0, 186, 255, 0.8);
+    border: 2px solid #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #fff;
+}
+
+.front { transform: translateZ(75px); }
+.back { transform: rotateY(180deg) translateZ(75px); }
+.left { transform: rotateY(-90deg) translateZ(75px); }
+.right { transform: rotateY(90deg) translateZ(75px); }
+.top { transform: rotateX(90deg) translateZ(75px); }
+.bottom { transform: rotateX(-90deg) translateZ(75px); }
+
+/* Animation */
+@keyframes rotateCube {
+    from { transform: rotateX(0deg) rotateY(0deg); }
+    to { transform: rotateX(360deg) rotateY(360deg); }
+}
+
+/* Watermark */
+.watermark {
+    margin-top: 50px;
+    font-size: 0.9em;
+    color: #ccc;
+}
